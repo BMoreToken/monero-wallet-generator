@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Monero offline wallet generator</title>
+  <title>BMoreCoin offline wallet generator</title>
   <meta charset="UTF-8">
 
 <!--
@@ -8594,13 +8594,13 @@ var aeonConfig = {
     addressPrefix: 0xB2,
     addressHeader: ''
 };
-var townforgeConfig = {
+var bmorecoinConfig = {
     coinUnitPlaces: 8,
-    coinSymbol: 'None',
-    coinName: 'Townforge',
-    coinUriPrefix: 'townforge:',
-    addressPrefix: 0x78,
-    addressHeader: 'TF1M'
+    coinSymbol: 'BALTx',
+    coinName: 'BMoreCoin',
+    coinUriPrefix: 'bmorecoin:',
+    addressPrefix: 0xd1,
+    addressHeader: ''
 };
 var cnUtilGen = function(initConfig) {
     //var config = $.extend({}, initConfig);
@@ -11000,12 +11000,12 @@ bC0zLjUsMjAuNGgtNkwyNDQuOCwzMTAuNkwyNDQuOCwzMTAuNnoiLz4KPC9nPgo8L3N2Zz4K">
                 <select id="currencyDropDownList" onchange="js:setCoin(this.selectedIndex);genwallet();restore_old_selection_index();" class="waves-effect waves-light btn" style="max-width: 20%">
                   <option>Monero</option>
                   <option>Aeon</option>
-                  <option>Townforge</option>
+                  <option>BMoreCoin</option>
                 </select>
                 wallet. It is self contained and
                 does all the necessary calculations locally, so is suitable for generating a new wallet on a machine
                 that is not connected to the network, and may even never be. This way, you can create
-                a Monero/Aeon/Townforge wallet without risking the keys. This file is GPG signed, see <a href="#gpg-instructions">GPG instructions</a>.
+                a Monero/Aeon/BMoreCoin wallet without risking the keys. This file is GPG signed, see <a href="#gpg-instructions">GPG instructions</a>.
                 You can check for up to date versions of this page
                 <a href="https://github.com/moneromooo-monero/monero-wallet-generator/blob/master/monero-wallet-generator.html">here</a>.
             </p>
@@ -11671,8 +11671,8 @@ function setCoin(index)
     current_lang = 'english';
   }
   else if (index == 2) {
-    cnUtil = cnUtilGen(townforgeConfig);
-    prefix_widget.value = "TF1M";
+    cnUtil = cnUtilGen(bmorecoinConfig);
+    prefix_widget.value = "b";
     enable = true;
     current_lang = 'english';
   }
@@ -11690,7 +11690,12 @@ function setCoin(index)
 var oldSelectionIndex = false;
 function restore_old_selection_index()
 {
-  if (oldSelectionIndex && document.getElementById("currencyDropDownList").value == "Monero") {
+  if (oldSelectionIndex && document.getElementById("currencyDropDownList").value == "BMoreCoin") {
+    document.getElementById("currencyDropDownList").value = "BMoreCoin";
+    setCoin(2);
+    oldSelectionIndex = false;
+  }
+  else if (oldSelectionIndex && document.getElementById("currencyDropDownList").value == "Monero") {
     document.getElementById("currencyDropDownList").value = "Aeon";
     setCoin(1);
     oldSelectionIndex = false;
