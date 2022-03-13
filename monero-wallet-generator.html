@@ -10999,13 +10999,12 @@ bC0zLjUsMjAuNGgtNkwyNDQuOCwzMTAuNkwyNDQuOCwzMTAuNnoiLz4KPC9nPgo8L3N2Zz4K">
                 This page generates a new
                 <select id="currencyDropDownList" onchange="js:setCoin(this.selectedIndex);genwallet();restore_old_selection_index();" class="waves-effect waves-light btn" style="max-width: 20%">
                   <option>BMoreCoin</option>
-                  <option>Monero</option>
-                  <option>Aeon</option>
+                  
                 </select>
                 wallet. It is self contained and
                 does all the necessary calculations locally, so is suitable for generating a new wallet on a machine
                 that is not connected to the network, and may even never be. This way, you can create
-                a Monero/Aeon/BMoreCoin wallet without risking the keys. This file is GPG signed, see <a href="#gpg-instructions">GPG instructions</a>.
+                a BMoreCoin wallet without risking the keys. This file is GPG signed, see <a href="#gpg-instructions">GPG instructions</a>.
                 You can check for up to date versions of this page
                 <a href="https://github.com/moneromooo-monero/monero-wallet-generator/blob/master/monero-wallet-generator.html">here</a>.
             </p>
@@ -11024,7 +11023,7 @@ bC0zLjUsMjAuNGgtNkwyNDQuOCwzMTAuNkwyNDQuOCwzMTAuNnoiLz4KPC9nPgo8L3N2Zz4K">
             <form>
                 <input class="btn deep-orange" type="button" onclick="js:genwallet_prefix();" value="Generate wallet with prefix" action="" id="gen_prefix_widget"/>
                 <p>(very slow for more than a few characters)</p>
-                <input type="text" value="4" id="prefix_widget" oninput="js:check_prefix_validity()"; onKeyPress="if (event.keyCode == 13){ js:genwallet_prefix(); return false;}" />
+                <input type="text" value="b" id="prefix_widget" oninput="js:check_prefix_validity()"; onKeyPress="if (event.keyCode == 13){ js:genwallet_prefix(); return false;}" />
             </form>
         </div>
     </div>
@@ -11658,29 +11657,18 @@ function setCoin(index)
 {
   var enable
   prefix_widget = document.getElementById("prefix_widget");
-  if (index == 0) {
-    cnUtil = cnUtilGen(moneroConfig);
-    prefix_widget.value = "4";
-    enable = true;
-    current_lang = 'english';
-  }
-  else if (index == 1) {
-    cnUtil = cnUtilGen(aeonConfig);
-    prefix_widget.value = "Wm";
-    enable = true;
-    current_lang = 'english';
-  }
-  else if (index == 2) {
+  
+  
     cnUtil = cnUtilGen(bmorecoinConfig);
     prefix_widget.value = "b";
     enable = true;
     current_lang = 'english';
-  }
+  
   enableLanguage("en", enable)
-  enableLanguage("es", enable)
-  enableLanguage("pt", enable)
-  enableLanguage("jp", enable)
-  enableLanguage("eo", enable)
+  //enableLanguage("es", enable)
+  //enableLanguage("pt", enable)
+  //enableLanguage("jp", enable)
+  //enableLanguage("eo", enable)
   enableElement("show_qr_code", enable)
   enableElement("show_priv_mnemonic_qr_code", enable)
   enableElement("show_priv_spend_qr_code", enable)
@@ -11690,21 +11678,11 @@ function setCoin(index)
 var oldSelectionIndex = false;
 function restore_old_selection_index()
 {
-  if (oldSelectionIndex && document.getElementById("currencyDropDownList").value == "BMoreCoin") {
+ 
     document.getElementById("currencyDropDownList").value = "BMoreCoin";
-    setCoin(2);
-    oldSelectionIndex = false;
-  }
-  else if (oldSelectionIndex && document.getElementById("currencyDropDownList").value == "Monero") {
-    document.getElementById("currencyDropDownList").value = "Aeon";
-    setCoin(1);
-    oldSelectionIndex = false;
-  }
-  else if (oldSelectionIndex && document.getElementById("currencyDropDownList").value == "Aeon") {
-    document.getElementById("currencyDropDownList").value = "Monero";
     setCoin(0);
     oldSelectionIndex = false;
-  }
+ 
 }
 
 setCoin(document.getElementById("currencyDropDownList").selectedIndex);
